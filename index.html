@@ -464,23 +464,52 @@ section {
             </div>
 
         </div>
-              <section id="contact">
-        <h2>Get In Touch</h2>
-        <div class="contact-container">
-            <p style="margin-bottom: 30px; color: var(--text-dim);">Have a project in mind or just want to say hi? Feel free to reach out.</p>
-            
-            <form action="https://formspree.io/f/abdullahkhanak776655@gmail.com" method="POST" class="contact-form">
-                <div class="form-group">
-                    <input type="text" name="name" placeholder="Your Name" required>
-                </div>
-                <div class="form-group">
-                    <input type="email" name="_replyto" placeholder="Your Email" required>
-                </div>
-                <div class="form-group">
-                    <textarea name="message" rows="5" placeholder="Your Message" required></textarea>
-                </div>
-                <button type="submit" class="submit-btn">Send Message</button>
-            </form>
+            <section id="contact">
+    <h2>Get In Touch</h2>
+    <div class="contact-container">
+        <p style="margin-bottom: 30px; color: var(--text-dim);">Have a project in mind or just want to say hi? Feel free to reach out.</p>
+        
+        <form id="whatsappForm" class="contact-form">
+            <div class="form-group">
+                <input type="text" id="name" placeholder="Your Name" required>
+            </div>
+            <div class="form-group">
+                <input type="email" id="email" placeholder="Your Email" required>
+            </div>
+            <div class="form-group">
+                <textarea id="message" rows="5" placeholder="Your Message" required></textarea>
+            </div>
+            <button type="submit" class="submit-btn">Send to WhatsApp</button>
+        </form>
+    </div>
+</section>
+
+<script>
+    document.getElementById('whatsappForm').addEventListener('submit', function(event) {
+        // Form ko refresh hone se rokna
+        event.preventDefault();
+        
+        // Form se data nikalna
+        var name = document.getElementById('name').value;
+        var email = document.getElementById('email').value;
+        var message = document.getElementById('message').value;
+        
+        // WhatsApp ke liye text message banana
+        var waMessage = "New Website Contact:\n\n" +
+                        "Name: " + name + "\n" +
+                        "Email: " + email + "\n" +
+                        "Message: " + message;
+        
+        // Text ko URL format mein convert karna (spaces aur symbols ko handle karne ke liye)
+        var encodedMessage = encodeURIComponent(waMessage);
+        
+        // Aapka WhatsApp link (92 country code ke sath)
+        var waURL = "https://wa.me/923092648358?text=" + encodedMessage;
+        
+        // WhatsApp ko naye tab mein open karna
+        window.open(waURL, '_blank');
+    });
+</script>
         </div>
     </section>
     </section>
